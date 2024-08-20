@@ -1,0 +1,25 @@
+---
+title: "demo_document"
+format: pdf
+execute: 
+  echo: false
+  warning: false
+params:
+  species: "setosa"
+---
+
+```{r}
+library(tidyverse)
+all_data <- readRDS("test_data.Rds")
+filtered_data <- all_data %>% filter(Species==params$species)
+```
+
+
+## First section
+this is a graph of `r params$species`
+
+
+```{r}
+filtered_data %>% ggplot() + geom_point(aes(Sepal.Length, sepal_area))
+
+```

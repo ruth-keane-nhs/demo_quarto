@@ -1,0 +1,27 @@
+---
+title: "rmarkdown_template"
+output: pdf_document
+date: "2024-08-20"
+params:
+  species: "setosa"
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
+```
+
+```{r} 
+library(tidyverse)
+all_data <- readRDS("test_data.Rds")
+filtered_data <- all_data %>% filter(Species==params$species)
+```
+
+
+## First section
+this is a graph of `r params$species`
+
+
+```{r}
+filtered_data %>% ggplot() + geom_point(aes(Sepal.Length, sepal_area))
+
+```
